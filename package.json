@@ -1,0 +1,11 @@
+{
+  "name": "members-only",
+  "version": "1.0.0",
+  "description": "This project part of the odin project curriculum. It is a is a mini message board where main goal is to utilise authentication settings and allow for different rendering or user actions depending on authentication. The main features are as follows:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
