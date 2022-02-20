@@ -26,4 +26,4 @@ let messageSchema = Schema({
   added: { type: Date },
 });
 
-module.exports = mongoose.model('Member', messageSchema);
+module.exports = mongoose.model('Message', messageSchema);
