@@ -24,9 +24,10 @@ const indexRouter = require('./routes/index');
 // );
 
 const app = express();
-app.set('views', __dirname);
-app.set('view engine', 'pug');
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'pug');
+app.use(express.static(__dirname + '/public'));
 // app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 // app.use(passport.initialize());
 // app.use(passport.session());

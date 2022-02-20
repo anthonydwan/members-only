@@ -4,7 +4,7 @@
     "node": "16.14.0"
   },
   "version": "1.0.0",
-  "description": "This project part of the odin project curriculum. It is a is a mini message board where main goal is to utilise authentication settings and allow for different rendering or user actions depending on authentication. The main features are as follows:",
+  "description": "This project part of the odin project curriculum. It is a is a mini message board where main goal is to utilise authentication settings and allow for different rendering or user actions depending on authentication.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon",

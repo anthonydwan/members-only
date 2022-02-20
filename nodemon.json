@@ -1,6 +1,6 @@
 {
-  "watch": ["./app.js", "./views"],
-  "ext": "ts, js, json, pug, html",
+  "watch": ["./app.js", "./views", "./public/stylesheets"],
+  "ext": "ts, js, json, pug, html, css",
   "ignore": ["node_modules"],
   "restarable": "rs",
   "env": {
