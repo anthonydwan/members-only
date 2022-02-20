@@ -1,14 +1,26 @@
 {
   "name": "members-only",
+  "engines": {
+    "node": "16.14.0"
+  },
   "version": "1.0.0",
   "description": "This project part of the odin project curriculum. It is a is a mini message board where main goal is to utilise authentication settings and allow for different rendering or user actions depending on authentication. The main features are as follows:",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.2.2",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
     "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

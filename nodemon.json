@@ -1,0 +1,9 @@
+{
+  "watch": ["./app.js", "./views"],
+  "ext": "ts, js, json, pug, html",
+  "ignore": ["node_modules"],
+  "restarable": "rs",
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
