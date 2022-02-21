@@ -15,8 +15,10 @@ if (!userArgs[0].startsWith('mongodb')) {
 var async = require('async');
 var Member = require('./memberModel');
 var Message = require('./messageModel');
+let bcrypt = require('bcryptjs');
 
 var mongoose = require('mongoose');
+const { deleteOne } = require('./memberModel');
 var mongoDB = userArgs[0];
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
@@ -28,18 +30,20 @@ var messages = [];
 
 const memberCreate = (
   first_name,
-  family_name,
+  last_name,
   username,
   password,
   is_admin,
   in_secret_club,
   cb
 ) => {
+  const hashed = encrypt(password);
+  console.log(hashed);
   let memberdetail = {
     first_name: first_name,
-    family_name: family_name,
+    last_name: last_name,
     username: username,
-    password: password,
+    password: hashed,
     is_admin: is_admin,
     in_secret_club: in_secret_club,
   };
@@ -66,12 +70,17 @@ function messageCreate(member, text, added_time, cb) {
       return;
     }
     console.log('New Message: ' + message);
-    genres.push(message);
+    messages.push(message);
     cb(null, message);
   });
 }
 
-function createGenreAuthors(cb) {
+const encrypt = (preHashedPassword) => {
+  // using synchronous version for simplicity
+  return bcrypt.hashSync(preHashedPassword, 10, (err, hashedPassword) => {});
+};
+
+function createMemberMessage(cb) {
   async.series(
     [
       function (callback) {
@@ -86,7 +95,15 @@ function createGenreAuthors(cb) {
         );
       },
       function (callback) {
-        memberCreate('Ben', 'Jones', psmith, 'password', false, true, callback);
+        memberCreate(
+          'Ben',
+          'Jones',
+          'bjones',
+          'password',
+          false,
+          true,
+          callback
+        );
       },
       function (callback) {
         memberCreate(
@@ -109,6 +126,9 @@ function createGenreAuthors(cb) {
           true,
           callback
         );
+      },
+      function (callback) {
+        memberCreate('Anthony', 'Wan', 'admin', 'admin', true, true, callback);
       },
 
       function (callback) {
@@ -158,15 +178,17 @@ function createGenreAuthors(cb) {
 }
 
 async.series(
-  [createGenreAuthors, createBooks, createBookInstances],
+  [createMemberMessage],
   // Optional callback
   function (err, results) {
     if (err) {
       console.log('FINAL ERR: ' + err);
     } else {
-      console.log('BOOKInstances: ' + bookinstances);
+      console.log('Messages: ' + messages);
     }
     // All done, disconnect from database
     mongoose.connection.close();
   }
 );
+
+module.exports = encrypt;
