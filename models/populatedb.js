@@ -135,7 +135,7 @@ function createMemberMessage(cb) {
         messageCreate(
           members[0],
           'Wow cool message!',
-          Date('December 17, 2021 16:24:00'),
+          '2021-11-23T16:24:00',
           callback
         );
       },
@@ -143,7 +143,7 @@ function createMemberMessage(cb) {
         messageCreate(
           members[1],
           'Join the secret club!',
-          Date('December 1, 2021 12:55:00'),
+          '2021-12-01T12:55:00',
           callback
         );
       },
@@ -151,15 +151,15 @@ function createMemberMessage(cb) {
         messageCreate(
           members[2],
           'Make sure to check out my github!',
-          Date('November 20, 2021 03:08:00'),
+          '2021-11-20T03:08:00',
           callback
         );
       },
       function (callback) {
         messageCreate(
           members[2],
-          'Woohooo!',
-          Date('January 13, 2022 12:23:00'),
+          'Woohooo!!!!!!!!!!',
+          '2022-01-13T12:23:00',
           callback
         );
       },
@@ -167,7 +167,7 @@ function createMemberMessage(cb) {
         messageCreate(
           members[0],
           'Nice to meet you all.',
-          Date('October 2, 2021 12:55:00'),
+          '2021-10-02T12:55:00',
           callback
         );
       },

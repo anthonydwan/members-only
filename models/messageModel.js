@@ -23,7 +23,7 @@ let messageSchema = Schema({
     minlen: [10, 'Message too short! It should be more than 10 characters.'],
     maxlen: [1000, 'Message too long! Keep it within 1000 characters.'],
   },
-  added: { type: Date },
+  added_time: { type: Date, required: true },
 });
 
 module.exports = mongoose.model('Message', messageSchema);
