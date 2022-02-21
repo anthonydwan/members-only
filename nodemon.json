@@ -1,5 +1,12 @@
 {
-  "watch": ["./app.js", "./views", "./public/stylesheets"],
+  "watch": [
+    "./app.js",
+    "./views",
+    "./public/stylesheets",
+    "./controllers",
+    "./models",
+    "./routes"
+  ],
   "ext": "ts, js, json, pug, html, css",
   "ignore": ["node_modules"],
   "restarable": "rs",

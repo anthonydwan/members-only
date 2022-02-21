@@ -1,9 +1,21 @@
 const res = require('express/lib/response');
-var Message = require('../models/messageModel');
+var Message = require('../models/messageModel.js');
 
 // Display list on all Messages.
-exports.message_list = (req, res) => {
-  res.send('NOT IMPLEMENTED: Message list');
+exports.message_list = (req, res, next) => {
+  Message.find({})
+    .sort({ added_time: 1 })
+    .exec((err, list_messages) => {
+      if (err) {
+        return next(err);
+      } else {
+        res.render('index', {
+          title: 'Members Secret Club',
+          msg: list_messages,
+          len: 3,
+        });
+      }
+    });
 };
 
 // Display form page of creating message
