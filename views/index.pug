@@ -3,7 +3,7 @@ extends layout
 block content
   header
     h1= title
-    p Welcome to #{title}! Let us know what's on your mind!
+    p Welcome to #{title}! To post messages, please sign up! To see who's posting the messages, you have to join the secret club!
   main
     button.new-message-button(onclick='window.location="/message"') What's on your mind?
     
@@ -12,11 +12,11 @@ block content
         p.msg #{msg[x].text}
         <hr>
         div.messageDiv-info
-          p #{msg[x].user}
-        //-   if msg[x].added.getMinutes() < 10
-        //-     p #{msg[x].added.getHours()}:0#{msg[x].added.getMinutes()} #{msg[x].added.toDateString()} 
-        //-   else 
-        //-     p #{msg[x].added.getHours()}:#{msg[x].added.getMinutes()} #{msg[x].added.toDateString()} 
+          p #{msg[x].member.first_name} #{msg[x].member.last_name} 
+          if msg[x].added_time.getMinutes() < 10
+            p #{msg[x].added_time.toDateString()} #{msg[x].added_time.getHours()}:0#{msg[x].added_time.getMinutes()}
+          else 
+            p #{msg[x].added_time.toDateString()} #{msg[x].added_time.getHours()}:#{msg[x].added_time.getMinutes()}
 
 
 

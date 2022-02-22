@@ -1,10 +1,12 @@
 const res = require('express/lib/response');
 var Message = require('../models/messageModel.js');
+let Member = require('../models/memberModel.js');
 
 // Display list on all Messages.
 exports.message_list = (req, res, next) => {
   Message.find({})
     .sort({ added_time: 1 })
+    .populate('member')
     .exec((err, list_messages) => {
       if (err) {
         return next(err);
@@ -12,7 +14,7 @@ exports.message_list = (req, res, next) => {
         res.render('index', {
           title: 'Members Secret Club',
           msg: list_messages,
-          len: 3,
+          len: list_messages.length,
         });
       }
     });
