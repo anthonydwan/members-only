@@ -16,4 +16,10 @@ router.post('/', (req, res) => {
   res.redirect('/');
 });
 
+// // GET the message form page
+// router.get('/message', messageController.message_create_get);
+
+// // POST the message form page
+// router.post('/message', messageController.message_create_post);
+
 module.exports = router;

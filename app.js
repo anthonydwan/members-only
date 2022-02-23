@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const messageRouter = require('./routes/message-form');
 const indexRouter = require('./routes/index');
+const signupRouter = require('./routes/sign-up-form');
+
 const dotenv = require('dotenv').config();
 
 const mongoDb = `mongodb+srv://${process.env.MONGODB_ACC}:${process.env.MONGODB_PW}@cluster0.67bm9.mongodb.net/Cluster0?retryWrites=true&w=majority`;
@@ -21,6 +23,7 @@ const app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
+
 // app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 // app.use(passport.initialize());
 // app.use(passport.session());
@@ -28,6 +31,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use('/', indexRouter);
 app.use('/message', messageRouter);
+app.use('/sign-up', signupRouter);
 
 app.use((err, req, res, next) => {
   // set locals, only providing error in development

@@ -2,10 +2,10 @@ extends layout
 
 block content
 
-	div.new-message-box
+	div.new-form-div
 		div.message-title 
 			h2 Got Something to say?
-		form(action="/new" method="POST")
+		form.form-style(action="/new" method="POST")
 			input.form-item(type="text" name="messageUser"
 			placeholder="Name" required)
 			textarea.form-item(name="messageText" placeholder="Message" required style={resize:"none"})

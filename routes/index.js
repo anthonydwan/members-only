@@ -5,12 +5,6 @@ const messageController = require('../controllers/messageController');
 /* Get home page */
 router.get('/', messageController.message_list);
 
-// GET the message form page
-router.get('/message', messageController.message_create_get);
-
-// POST the message form page
-router.post('/message', messageController.message_create_post);
-
 // GET the delete message page
 router.get('/delete', messageController.message_delete_get);
 
