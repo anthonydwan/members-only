@@ -13,15 +13,6 @@ router.post('/delete', messageController.message_delete_post);
 
 module.exports = router;
 
-// // Display list on all Messages.
-// exports.message_list = (req, res) => {
-//     res.send('NOT IMPLEMENTED: Message list');
-// };
-
-// // Display form page of creating message
-// exports.message_create_get = () => {
-// 	res.send('NOT IMPLEMENTED: Message Create GET')
-// }
 
 // // Handlle creation of message on POST
 // exports.message_create_post = () => {

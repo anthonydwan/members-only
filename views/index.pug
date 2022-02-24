@@ -1,6 +1,12 @@
 extends layout
 
 block content
+  nav
+    if user
+      h2 Welcome Back! #{user.username}
+    else
+      button(onclick='window.location="/log-in"') Sign In
+      
   header
     h1= title
     p Welcome to #{title}! To post messages, please sign up! To see who's posting the messages, you have to join the secret club!

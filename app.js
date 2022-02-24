@@ -6,11 +6,12 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const messageRouter = require('./routes/message-form');
 const indexRouter = require('./routes/index');
 const signupRouter = require('./routes/sign-up-form');
 const loginRouter = require('./routes/log-in-form');
+
+const Member = require('./models/memberModel');
 
 const dotenv = require('dotenv').config();
 
@@ -24,12 +25,6 @@ const app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
-
-app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-// you need this to parse the body using req.body
-app.use(express.urlencoded({ extended: false }));
 
 /* 
 this function is called when we use the passport.authenticate() 
@@ -57,20 +52,38 @@ passport.use(
 These two functions defined what bit of 
 information passport is looking for when cretes and decodes the cookie
 */
-passport.serializeUser((member, done) => {
-  done(null, member.id);
-});
 
-passport.deserializeUser((id, done) => {
-  Member.findById(id, (err, member) => {
-    done(err, member);
-  });
-});
+passport.serializeUser((member, done) => done(null, member.id));
+passport.deserializeUser((id, done) =>
+  Member.findById(id, (err, member) => done(err, member))
+);
+
+app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+// you need this to parse the body using req.body
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
 app.use('/message', messageRouter);
 app.use('/sign-up', signupRouter);
-app.use('/log-in', loginRouter);
+// app.use('/log-in', loginRouter);
+
+app.get('/log-in', (req, res) => {
+  res.render('log-in-form', { member: req.member });
+});
+
+app.post(
+  '/log-in',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/log-in',
+  })
+);
+
+app.get('/log-out', (req, res) => {
+  req.logout();
+});
 
 app.use((err, req, res, next) => {
   // set locals, only providing error in development

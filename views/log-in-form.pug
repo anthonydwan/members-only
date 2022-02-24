@@ -3,11 +3,20 @@ extends layout
 block content
 
 	div.new-form-div
-		div.message-title 
-			h1 Please log In
-		form.form-style(action="/log-in" method="POST")
-			input.form-item(type="text" name="username"
-			placeholder="Username" required)
-			input.form-item(type="password" name="password"
-			placeholder="Password" required)
-			button.form-item.form-button(type="submit") Log In
+		if member 
+			div.message-title 
+				h1 Welcome Back 
+				form(action="/log-out" method="POST")
+					button(type="submit") LOG OUT
+		else
+			div.message-title 
+				h1 Please log In
+			form.form-style(action="/log-in" method="POST")
+				input.form-item(type="text" name="username"
+				placeholder="Username" required)
+				input.form-item(type="password" name="password"
+				placeholder="Password" required)
+				button.form-item.form-button(type="submit") Log In
+
+			span New Member? Please 
+				a(href ="/sign-up") Sign Up

@@ -1,4 +1,3 @@
-const res = require('express/lib/response');
 var Message = require('../models/messageModel.js');
 let Member = require('../models/memberModel.js');
 
@@ -15,6 +14,7 @@ exports.message_list = (req, res, next) => {
           title: 'Members Secret Club',
           msg: list_messages,
           len: list_messages.length,
+          user: req.member,
         });
       }
     });
